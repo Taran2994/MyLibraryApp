@@ -1,15 +1,18 @@
+package com.example.mylibraryapp;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mylibraryapp.R;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -40,6 +43,18 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
+        holder.txtBookName.setText(bookList.get(position).getName());
+        Glide.with(cntnxt).asBitmap().load(bookList.get(position).getImageUrl())
+                .into(holder.imgBook);
+
+        holder.parent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(cntnxt, bookList.get(position).getName()+" selected", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
 
     }

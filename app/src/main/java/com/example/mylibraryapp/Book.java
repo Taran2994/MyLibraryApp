@@ -1,3 +1,5 @@
+package com.example.mylibraryapp;
+
 public class Book {
     private int id, pages;
 
@@ -11,7 +13,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
+        return "com.example.mylibraryapp.Book{" +
                 "id=" + id +
                 ", pages=" + pages +
                 ", name='" + name + '\'' +
@@ -70,7 +72,7 @@ public class Book {
         this.longDesc = longDesc;
     }
 
-    public Book(int id, int pages, String name, String author, String imageUrl, String shortDesc, String longDesc) {
+    public Book(int id,  String name, String author, int pages, String imageUrl, String shortDesc, String longDesc) {
         this.id = id;
         this.pages = pages;
         this.name = name;
