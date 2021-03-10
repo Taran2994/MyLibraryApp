@@ -7,9 +7,12 @@
     tools:context=".AllBooksActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
         android:id="@+id/booksRecView"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="156dp"
+        android:layout_margin="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="219dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,11 +48,27 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
         holder.txtBookName.setText(bookList.get(position).getName());
         Glide.with(cntnxt).asBitmap().load(bookList.get(position).getImageUrl())
                 .into(holder.imgBook);
+        holder.txtAuthor.setText(bookList.get(position).getAuthor());
+        holder.txtShortDesc.setText(bookList.get(position).getShortDesc());
 
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(cntnxt, bookList.get(position).getName()+" selected", Toast.LENGTH_SHORT).show();
+            }
+        });
+        holder.imgDownArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.imgDownArrow.setVisibility(View.GONE);
+                holder.expandCard.setVisibility(View.VISIBLE);
+            }
+        });
+        holder.imgUpArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.expandCard.setVisibility(View.GONE);
+                holder.imgDownArrow.setVisibility(View.VISIBLE);
             }
         });
 
@@ -67,13 +84,21 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
     public class ViewHolder extends RecyclerView.ViewHolder{
 
     private CardView parent;
-    private ImageView imgBook;
-    private TextView txtBookName;
+    private ImageView imgBook, imgDownArrow, imgUpArrow;
+    private TextView txtBookName,txtAuthor, txtShortDesc;
+    private LinearLayout expandCard;
+
     public ViewHolder(@NonNull View itemView) {
         super(itemView);
         parent= itemView.findViewById(R.id.parent);
         imgBook=itemView.findViewById(R.id.imgBook);
         txtBookName=itemView.findViewById(R.id.txtBookName);
+        imgDownArrow=itemView.findViewById(R.id.imgDownArrow);
+        imgUpArrow=itemView.findViewById(R.id.imgUpArrow);
+        expandCard=itemView.findViewById(R.id.expandCard);
+        txtAuthor=itemView.findViewById(R.id.txtAuthor);
+        txtShortDesc=itemView.findViewById(R.id.txtShortDesc);
+
 
     }
     }
