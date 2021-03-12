@@ -22,15 +22,8 @@ public class AllBooksActivity extends AppCompatActivity {
 
         booksRecView.setAdapter(adapter);
         booksRecView.setLayoutManager(new LinearLayoutManager(this));
-        ArrayList<Book> books= new ArrayList<>();
-        books.add(new Book(1, "2 States", "Chetan Bhagat", 448,"https://upload.wikimedia.org/wikipedia/en/thumb/3/3a/2_States_-_The_Story_Of_My_Marriage.jpg/220px-2_States_-_The_Story_Of_My_Marriage.jpg",
-                "A story of 2 states","This is a long desc"));
-        books.add(new Book(2, "3 Idiots", "Chetan Bhagat", 448,"https://upload.wikimedia.org/wikipedia/en/thumb/3/3a/2_States_-_The_Story_Of_My_Marriage.jpg/220px-2_States_-_The_Story_Of_My_Marriage.jpg",
-                "A story of 3 friends who study in the same class in an engineering college","This is a long desc"));
-        books.add(new Book(3, "Half Girlfriend", "Chetan Bhagat", 448,"https://upload.wikimedia.org/wikipedia/en/thumb/3/3a/2_States_-_The_Story_Of_My_Marriage.jpg/220px-2_States_-_The_Story_Of_My_Marriage.jpg",
-                "A story of 2 states","This is a long desc"));
-        books.add(new Book(4, "3 Mistakes of my life", "Chetan Bhagat", 448,"https://upload.wikimedia.org/wikipedia/en/thumb/3/3a/2_States_-_The_Story_Of_My_Marriage.jpg/220px-2_States_-_The_Story_Of_My_Marriage.jpg",
-                "A story of 2 states","This is a long desc"));
-        adapter.setBookList(books);
+
+
+        adapter.setBookList(Utils.getInstance().getAllBooks());
     }
 }

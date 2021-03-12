@@ -23,10 +23,10 @@ public class BookActivity extends AppCompatActivity {
         txtPages = findViewById(R.id.txtPages);
         txtLongDesc = findViewById(R.id.txtLongDescription);
         imgBookCover = findViewById(R.id.imgBookCover);
-        Book book = new Book(1, "2 States", "Chetan Bhagat", 448, "https://upload.wikimedia.org/wikipedia/en/thumb/3/3a/2_States_-_The_Story_Of_My_Marriage.jpg/220px-2_States_-_The_Story_Of_My_Marriage.jpg",
-                "A story of 2 states", "A story of 3 friends who study in the same class in an engineering college." );
+        int bookIdd= getIntent().getIntExtra("bookId",-1);
 
-
+        Book book = Utils.getInstance().getBookById(bookIdd);
+        if (book!=null){setData(book);}
         setData(book);
     }
 
