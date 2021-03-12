@@ -21,24 +21,22 @@ public class MainActivity extends AppCompatActivity {
         btnAllBooks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(MainActivity.this,AllBooksActivity.class);
+                Intent intent = new Intent(MainActivity.this, AllBooksActivity.class);
                 startActivity(intent);
             }
         });
 
 
 
-
-
     }
 
-    public void initViews(){
-        btnAllBooks= findViewById(R.id.btnAllBooks);
-        btnCurrentlyReading=findViewById(R.id.btnCurrentlyReading);
-        btnAlreadyRead=findViewById(R.id.btnAlreadyRead);
-        btnWishlist=findViewById(R.id.btnWishlist);
-        btnFavBooks=findViewById(R.id.btnFavBooks);
-        btnAbout=findViewById(R.id.btnAbout);
+    public void initViews() {
+        btnAllBooks = findViewById(R.id.btnAllBooks);
+        btnCurrentlyReading = findViewById(R.id.btnCurrentlyReading);
+        btnAlreadyRead = findViewById(R.id.btnAlreadyRead);
+        btnWishlist = findViewById(R.id.btnWishlist);
+        btnFavBooks = findViewById(R.id.btnFavBooks);
+        btnAbout = findViewById(R.id.btnAbout);
 
 
     }
