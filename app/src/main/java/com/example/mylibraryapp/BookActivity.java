@@ -96,7 +96,7 @@ public class BookActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     if (Utils.getInstance().addToFavoriteBooks(book)) {
                         Toast.makeText(BookActivity.this, book.getName() + " was added to list of Favorite books", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(BookActivity.this, CurrentlyReadingActivity.class);
+                        Intent intent = new Intent(BookActivity.this, FavoriteBooksActivity.class);
                         startActivity(intent);
                     } else {
                         Toast.makeText(BookActivity.this, book.getName() + " could not be added to the list", Toast.LENGTH_SHORT).show();

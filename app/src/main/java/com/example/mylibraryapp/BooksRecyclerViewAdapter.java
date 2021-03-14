@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,14 +23,16 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
 
     private ArrayList<Book> bookList= new ArrayList<>();
     private Context cntnxt;
+    private String activityName;
 
     public void setBookList(ArrayList<Book> bookList) {
         this.bookList = bookList;
         notifyDataSetChanged();
     }
 
-    public BooksRecyclerViewAdapter(Context context)
+    public BooksRecyclerViewAdapter(Context context, String activityName)
     {
+        this.activityName=activityName;
         this.cntnxt=context;
 
     }
@@ -65,6 +68,10 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
             public void onClick(View v) {
                 holder.imgDownArrow.setVisibility(View.GONE);
                 holder.expandCard.setVisibility(View.VISIBLE);
+                if(!activityName.equals("AllBooksActivity")){
+                    holder.delete.setVisibility(View.VISIBLE);
+                }
+
             }
         });
         holder.imgUpArrow.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +97,7 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
     private ImageView imgBook, imgDownArrow, imgUpArrow;
     private TextView txtBookName,txtAuthor, txtShortDesc;
     private LinearLayout expandCard;
-
+    private Button delete;
     public ViewHolder(@NonNull View itemView) {
         super(itemView);
         parent= itemView.findViewById(R.id.parent);
@@ -101,6 +108,8 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
         expandCard=itemView.findViewById(R.id.expandCard);
         txtAuthor=itemView.findViewById(R.id.txtAuthor);
         txtShortDesc=itemView.findViewById(R.id.txtShortDesc);
+        delete=itemView.findViewById(R.id.delete);
+
 
 
     }
