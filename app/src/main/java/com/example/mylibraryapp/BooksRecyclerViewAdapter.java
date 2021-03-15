@@ -1,6 +1,7 @@
 package com.example.mylibraryapp;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -74,12 +76,28 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
                     holder.delete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (Utils.getInstance().removeFromAlreadyRead(bookList.get(position))) {
-                                Toast.makeText(cntnxt, "Book deleted", Toast.LENGTH_SHORT).show();
-                                notifyDataSetChanged();
-                            } else {
-                                Toast.makeText(cntnxt, "Book could not be deleted", Toast.LENGTH_SHORT).show();
-                            }
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(cntnxt);
+                            builder.setMessage("Are you sure you want to delete this book?");
+                            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if (Utils.getInstance().removeFromAlreadyRead(bookList.get(position))) {
+                                        Toast.makeText(cntnxt, "Book deleted", Toast.LENGTH_SHORT).show();
+                                        notifyDataSetChanged();
+                                    } else {
+                                        Toast.makeText(cntnxt, "Book could not be deleted", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+
+                            builder.create().show();
 
 
                         }
@@ -89,12 +107,28 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
                     holder.delete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (Utils.getInstance().removeFromCurrentlyReading(bookList.get(position))) {
-                                Toast.makeText(cntnxt, "Book deleted", Toast.LENGTH_SHORT).show();
-                                notifyDataSetChanged();
-                            } else {
-                                Toast.makeText(cntnxt, "Book could not be deleted", Toast.LENGTH_SHORT).show();
-                            }
+                            AlertDialog.Builder builder = new AlertDialog.Builder(cntnxt);
+                            builder.setMessage("Are you sure you want to delete this book?");
+                            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if (Utils.getInstance().removeFromCurrentlyReading(bookList.get(position))) {
+                                        Toast.makeText(cntnxt, "Book deleted", Toast.LENGTH_SHORT).show();
+                                        notifyDataSetChanged();
+                                    } else {
+                                        Toast.makeText(cntnxt, "Book could not be deleted", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+
+                            builder.create().show();
+
                         }
                     });
 
@@ -104,12 +138,28 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
                     holder.delete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (Utils.getInstance().removeFromFavorites(bookList.get(position))) {
-                                Toast.makeText(cntnxt, "Book deleted", Toast.LENGTH_SHORT).show();
-                                notifyDataSetChanged();
-                            } else {
-                                Toast.makeText(cntnxt, "Book could not be deleted", Toast.LENGTH_SHORT).show();
-                            }
+                            AlertDialog.Builder builder = new AlertDialog.Builder(cntnxt);
+                            builder.setMessage("Are you sure you want to delete this book?");
+                            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if (Utils.getInstance().removeFromFavorites(bookList.get(position))) {
+                                        Toast.makeText(cntnxt, "Book deleted", Toast.LENGTH_SHORT).show();
+                                        notifyDataSetChanged();
+                                    } else {
+                                        Toast.makeText(cntnxt, "Book could not be deleted", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+
+                            builder.create().show();
+
                         }
                     });
 
@@ -119,12 +169,28 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
                     holder.delete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (Utils.getInstance().removeFromWishlist(bookList.get(position))) {
-                                Toast.makeText(cntnxt,  "Book deleted", Toast.LENGTH_SHORT).show();
-                                notifyDataSetChanged();
-                            } else {
-                                Toast.makeText(cntnxt, "Book could not be deleted", Toast.LENGTH_SHORT).show();
-                            }
+                            AlertDialog.Builder builder = new AlertDialog.Builder(cntnxt);
+                            builder.setMessage("Are you sure you want to delete this book?");
+                            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if (Utils.getInstance().removeFromWishlist(bookList.get(position))) {
+                                        Toast.makeText(cntnxt, "Book deleted", Toast.LENGTH_SHORT).show();
+                                        notifyDataSetChanged();
+                                    } else {
+                                        Toast.makeText(cntnxt, "Book could not be deleted", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+
+                            builder.create().show();
+
 
                         }
                     });
