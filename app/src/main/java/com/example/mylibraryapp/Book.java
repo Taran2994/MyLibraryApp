@@ -108,7 +108,7 @@ public class Book {
         this.longDesc = longDesc;
     }
 
-    public Book(int id,  String name, String author, int pages, String imageUrl, String shortDesc, String longDesc,int currently_reading, int already_read, int wishlist, int favorites) {
+    public Book(int id, String name, String author, int pages, String imageUrl, String shortDesc, String longDesc, int currently_reading, int already_read, int wishlist, int favorites) {
         this.id = id;
         this.pages = pages;
         this.name = name;
@@ -116,10 +116,10 @@ public class Book {
         this.imageUrl = imageUrl;
         this.shortDesc = shortDesc;
         this.longDesc = longDesc;
-        this.currently_reading=currently_reading;
-        this.already_read=already_read;
-        this.wishlist=wishlist;
-        this.favorites=favorites;
+        this.currently_reading = currently_reading;
+        this.already_read = already_read;
+        this.wishlist = wishlist;
+        this.favorites = favorites;
     }
 
     private String name, author, imageUrl, shortDesc, longDesc;

@@ -55,6 +55,7 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
                 .into(holder.imgBook);
         holder.txtAuthor.setText(bookList.get(position).getAuthor());
         holder.txtShortDesc.setText(bookList.get(position).getShortDesc());
+        DatabaseHelper helper = new DatabaseHelper(cntnxt);
 
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,8 +83,10 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
                             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    if (Utils.getInstance(cntnxt).removeFromAlreadyRead(bookList.get(position))) {
+                                    if (helper.removeFromAlreadyRead(bookList.get(position))) {
                                         Toast.makeText(cntnxt, "Book deleted", Toast.LENGTH_SHORT).show();
+
+                                        bookList.remove(position);
                                         notifyDataSetChanged();
                                     } else {
                                         Toast.makeText(cntnxt, "Book could not be deleted", Toast.LENGTH_SHORT).show();
@@ -112,8 +115,9 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
                             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    if (Utils.getInstance(cntnxt).removeFromCurrentlyReading(bookList.get(position))) {
+                                    if (helper.removeFromCurrentlyReading(bookList.get(position))) {
                                         Toast.makeText(cntnxt, "Book deleted", Toast.LENGTH_SHORT).show();
+                                        bookList.remove(position);
                                         notifyDataSetChanged();
                                     } else {
                                         Toast.makeText(cntnxt, "Book could not be deleted", Toast.LENGTH_SHORT).show();
@@ -143,8 +147,9 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
                             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    if (Utils.getInstance(cntnxt).removeFromFavorites(bookList.get(position))) {
+                                    if (helper.removeFromFavorites(bookList.get(position))) {
                                         Toast.makeText(cntnxt, "Book deleted", Toast.LENGTH_SHORT).show();
+                                        bookList.remove(position);
                                         notifyDataSetChanged();
                                     } else {
                                         Toast.makeText(cntnxt, "Book could not be deleted", Toast.LENGTH_SHORT).show();
@@ -174,8 +179,10 @@ public class BooksRecyclerViewAdapter extends RecyclerView.Adapter<BooksRecycler
                             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    if (Utils.getInstance(cntnxt).removeFromWishlist(bookList.get(position))) {
+                                    if (helper.removeFromWishlist(bookList.get(position))) {
                                         Toast.makeText(cntnxt, "Book deleted", Toast.LENGTH_SHORT).show();
+
+                                        bookList.remove(position);
                                         notifyDataSetChanged();
                                     } else {
                                         Toast.makeText(cntnxt, "Book could not be deleted", Toast.LENGTH_SHORT).show();

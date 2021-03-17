@@ -78,65 +78,48 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-
-    public boolean updateBook(int id, String book_name, String author, int pages, String imgUrl, String short_desc, String long_desc,
-                              int currently_reading, int already_read, int wishlist, int favorites) {
-
+    public boolean addToCurrentlyReadingBooks(Book book) {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COLUMN_ID, id);
-        cv.put(COLUMN_BOOK, book_name);
-        cv.put(COLUMN_AUTHOR, author);
-        cv.put(COLUMN_PAGES, pages);
-        cv.put(COLUMN_IMGURL, imgUrl);
-        cv.put(COLUMN_SHORTDESC, short_desc);
-        cv.put(COLUMN_LONGDESC, long_desc);
-        cv.put(COLUMN_CURRENT, currently_reading);
-        cv.put(COLUMN_ALREADY, already_read);
-        cv.put(COLUMN_WISHLIST, wishlist);
-        cv.put(COLUMN_FAVORITES, favorites);
-
-        //TODO: CHECK IF THE SQL UPDATE CAN BE RUN WITH ONLY THE VALUES THAT WE WANT TO UPDATE
-
-
-        return sqLiteDatabase.update(TABLE_NAME, cv, COLUMN_ID + "=?", new String[]{String.valueOf(id)}) > 0;
-    }
-    public boolean addToCurrentlyReadingBooks(Book book){
-        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put(COLUMN_CURRENT,1);
-        Boolean b=sqLiteDatabase.update(TABLE_NAME,cv,COLUMN_ID+"=?", new String[]{String.valueOf(book.getId())}) >0;
+        cv.put(COLUMN_CURRENT, 1);
+        Boolean b = sqLiteDatabase.update(TABLE_NAME, cv, COLUMN_ID + "=?", new String[]{String.valueOf(book.getId())}) > 0;
         sqLiteDatabase.close();
         return b;
 
     }
-    public boolean addToFavorites(Book book){
+
+    public boolean addToFavorites(Book book) {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COLUMN_FAVORITES,1);
-        Boolean b=sqLiteDatabase.update(TABLE_NAME,cv,COLUMN_ID+"=?", new String[]{String.valueOf(book.getId())}) >0;
+        cv.put(COLUMN_FAVORITES, 1);
+        Boolean b = sqLiteDatabase.update(TABLE_NAME, cv, COLUMN_ID + "=?", new String[]{String.valueOf(book.getId())}) > 0;
         sqLiteDatabase.close();
         return b;
 
     }
-    public boolean addToWishlist(Book book){
+
+    public boolean addToWishlist(Book book) {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COLUMN_WISHLIST,1);
-        Boolean b=sqLiteDatabase.update(TABLE_NAME,cv,COLUMN_ID+"=?", new String[]{String.valueOf(book.getId())}) >0;
+        cv.put(COLUMN_WISHLIST, 1);
+        Boolean b = sqLiteDatabase.update(TABLE_NAME, cv, COLUMN_ID + "=?", new String[]{String.valueOf(book.getId())}) > 0;
         sqLiteDatabase.close();
         return b;
 
     }
-    public boolean addToAlreadyRead(Book book){
+
+    public boolean addToAlreadyRead(Book book) {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COLUMN_ALREADY,1);
-        Boolean b=sqLiteDatabase.update(TABLE_NAME,cv,COLUMN_ID+"=?", new String[]{String.valueOf(book.getId())}) >0;
+        cv.put(COLUMN_ALREADY, 1);
+        Boolean b = sqLiteDatabase.update(TABLE_NAME, cv, COLUMN_ID + "=?", new String[]{String.valueOf(book.getId())}) > 0;
         sqLiteDatabase.close();
         return b;
 
-    }    public ArrayList<Book> getAllBooks() {
+    }
+
+
+    public ArrayList<Book> getAllBooks() {
         ArrayList<Book> allBooksList = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME, null);
@@ -160,7 +143,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public ArrayList<Book> getCurrentlyReadingBooks() {
         ArrayList<Book> currentlyRead = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME+ " WHERE "+ COLUMN_CURRENT+ " = 1", null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_CURRENT + " = 1", null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -177,10 +160,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     }
+
     public ArrayList<Book> getAlreadReadBooks() {
         ArrayList<Book> alreadyRead = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME+ " WHERE "+ COLUMN_ALREADY+ " = 1", null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_ALREADY + " = 1", null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -201,7 +185,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public ArrayList<Book> getWishlistBooks() {
         ArrayList<Book> wishlistBooks = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME+ " WHERE "+ COLUMN_WISHLIST+ " = 1", null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_WISHLIST + " = 1", null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -218,10 +202,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     }
+
     public ArrayList<Book> getFavoriteBooks() {
         ArrayList<Book> favBooks = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME+ " WHERE "+ COLUMN_FAVORITES+ " = 1", null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_FAVORITES + " = 1", null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -237,6 +222,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return favBooks;
 
 
+    }
+
+    public boolean removeFromAlreadyRead(Book book) {
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_ALREADY, 0);
+        Boolean b = sqLiteDatabase.update(TABLE_NAME, cv, COLUMN_ID + "=?", new String[]{String.valueOf(book.getId())}) > 0;
+        sqLiteDatabase.close();
+        return b;
+
+    }
+
+    public boolean removeFromCurrentlyReading(Book book) {
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_CURRENT, 0);
+        Boolean b = sqLiteDatabase.update(TABLE_NAME, cv, COLUMN_ID + "=?", new String[]{String.valueOf(book.getId())}) > 0;
+        sqLiteDatabase.close();
+        return b;
+    }
+
+    public boolean removeFromFavorites(Book book) {
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_FAVORITES, 0);
+        Boolean b = sqLiteDatabase.update(TABLE_NAME, cv, COLUMN_ID + "=?", new String[]{String.valueOf(book.getId())}) > 0;
+        sqLiteDatabase.close();
+
+        return b;
+
+    }
+
+    public boolean removeFromWishlist(Book book) {
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_WISHLIST, 0);
+        Boolean b = sqLiteDatabase.update(TABLE_NAME, cv, COLUMN_ID + "=?", new String[]{String.valueOf(book.getId())}) > 0;
+        sqLiteDatabase.close();
+
+        return b;
     }
 
 
@@ -261,7 +286,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void initData() {
 
 
-        if(getAllBooks().size()==0){
+        if (getAllBooks().size() == 0) {
             addBook(1, "2 States", "Chetan Bhagat", 448, "https://upload.wikimedia.org/wikipedia/en/thumb/3/3a/2_States_-_The_Story_Of_My_Marriage.jpg/220px-2_States_-_The_Story_Of_My_Marriage.jpg",
                     "Marriage of the author", "A story of 3 friends who study in the same class in an engineering college" +
                             "A story of 3 friends who study in the same class in an engineering college" +
@@ -269,13 +294,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                             "A story of 3 friends who study in the same class in an engineering college" +
                             "A story of 3 friends who study in the same class in an engineering college" +
                             "A story of 3 friends who study in the same class in an engineering college" +
-                            "A story of 3 friends who study in the same class in an engineering college",0,0,0,0);
+                            "A story of 3 friends who study in the same class in an engineering college", 0, 0, 0, 0);
             addBook(2, "5 point someone", "Chetan Bhagat", 533, "https://images-na.ssl-images-amazon.com/images/I/511wMMedbhL._SX327_BO1,204,203,200_.jpg",
-                    "A story of 3 friends who study in the same class in an engineering college", "This is a long desc",0,0,0,0);
+                    "A story of 3 friends who study in the same class in an engineering college", "This is a long desc", 0, 0, 0, 0);
             addBook(3, "Half Girlfriend", "Chetan Bhagat", 323, "https://upload.wikimedia.org/wikipedia/en/thumb/c/c6/Half_Girlfriend.jpg/220px-Half_Girlfriend.jpg",
-                    "Romantic tale about the friendship of 2 teens", "This is a long desc",0,0,0,0);
+                    "Romantic tale about the friendship of 2 teens", "This is a long desc", 0, 0, 0, 0);
             addBook(4, "3 Mistakes of my life", "Chetan Bhagat", 448, "https://images-na.ssl-images-amazon.com/images/I/51nziLHeduL.jpg",
-                    "An amazing india story of cricket and riots", "This is a long desc",0,0,0,0);
+                    "An amazing india story of cricket and riots", "This is a long desc", 0, 0, 0, 0);
 
         }
 

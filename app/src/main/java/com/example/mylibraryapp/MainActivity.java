@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        DatabaseHelper db= new DatabaseHelper(this);
+        DatabaseHelper db = new DatabaseHelper(this);
         db.initData();// To make sure all the lists are initialised and to stop null pointer exception
 
         initViews();
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         btnAlreadyRead.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(MainActivity.this, AlreadyReadBooksActivity.class);
+                Intent intent = new Intent(MainActivity.this, AlreadyReadBooksActivity.class);
                 startActivity(intent);
             }
         });
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         btnCurrentlyReading.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(MainActivity.this, CurrentlyReadingActivity.class);
+                Intent intent = new Intent(MainActivity.this, CurrentlyReadingActivity.class);
                 startActivity(intent);
             }
         });
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         btnFavBooks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(MainActivity.this, FavoriteBooksActivity.class);
+                Intent intent = new Intent(MainActivity.this, FavoriteBooksActivity.class);
                 startActivity(intent);
             }
         });
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         btnWishlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(MainActivity.this, WishlistActivity.class);
+                Intent intent = new Intent(MainActivity.this, WishlistActivity.class);
                 startActivity(intent);
             }
         });
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         btnAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("About the App");
                 builder.setMessage("This android application was developed by Taranpreet Singh. Please open and connect with me on Linkedin" +
                         " for further details.");
@@ -78,15 +78,13 @@ public class MainActivity extends AppCompatActivity {
                 builder.setPositiveButton("Open", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent=new Intent(MainActivity.this, LinkedinActivity.class);
+                        Intent intent = new Intent(MainActivity.this, LinkedinActivity.class);
                         startActivity(intent);
                     }
                 });
                 builder.create().show();
             }
         });
-
-
 
 
     }

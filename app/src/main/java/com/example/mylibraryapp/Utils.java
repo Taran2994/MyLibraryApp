@@ -17,11 +17,6 @@ public class Utils {
     public static ArrayList<Book> getAllBooks() {
 
 
-
-
-
-
-
         return allBooks;
     }
 
@@ -54,11 +49,10 @@ public class Utils {
         wishlistBooks = new ArrayList<>();
         currentlyReadingBooks = new ArrayList<>();
         favoriteBooks = new ArrayList<>();
-        dbHelper= new DatabaseHelper(context);
+        dbHelper = new DatabaseHelper(context);
 
 
     }
-
 
 
     public Book getBookById(int id) {
@@ -88,20 +82,5 @@ public class Utils {
         return wishlistBooks.add(b);
     }
 
-    public boolean removeFromAlreadyRead(Book book) {
-        return alreadyReadBooks.remove(book);
-    }
-
-    public boolean removeFromCurrentlyReading(Book book) {
-        return currentlyReadingBooks.remove(book);
-    }
-
-    public boolean removeFromFavorites(Book book) {
-        return favoriteBooks.remove(book);
-    }
-
-    public boolean removeFromWishlist(Book book) {
-        return wishlistBooks.remove(book);
-    }
 
 }

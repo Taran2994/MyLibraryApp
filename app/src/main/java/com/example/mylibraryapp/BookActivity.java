@@ -37,7 +37,7 @@ public class BookActivity extends AppCompatActivity {
         btnAddToFavorites = findViewById(R.id.btnAddToFav);
         btnAddToWishlist = findViewById(R.id.btnAddToWishlist);
         int bookIdd = getIntent().getIntExtra("bookId", -1);
-         helper= new DatabaseHelper(this);
+        helper = new DatabaseHelper(this);
 
 
         Book book = helper.getBook(bookIdd);
@@ -54,7 +54,7 @@ public class BookActivity extends AppCompatActivity {
     private void handleWishlist(Book book) {
 
 
-        if (book.getWishlist()==1) {
+        if (book.getWishlist() == 1) {
             btnAddToWishlist.setEnabled(false);
         } else {
             btnAddToWishlist.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +79,7 @@ public class BookActivity extends AppCompatActivity {
 
     private void handleFavorite(Book book) {
 
-        if (book.getFavorites()==1) {
+        if (book.getFavorites() == 1) {
             btnAddToFavorites.setEnabled(false);
         } else {
             btnAddToFavorites.setOnClickListener(new View.OnClickListener() {
@@ -100,13 +100,11 @@ public class BookActivity extends AppCompatActivity {
         }
 
 
-
-
     }
 
-    private void handleCurrentlyReading(Book book){
+    private void handleCurrentlyReading(Book book) {
 
-        if (book.getCurrently_reading()==1) {
+        if (book.getCurrently_reading() == 1) {
             btnAddToCurrentReading.setEnabled(false);
         } else {
             btnAddToCurrentReading.setOnClickListener(new View.OnClickListener() {
@@ -127,12 +125,11 @@ public class BookActivity extends AppCompatActivity {
         }
 
 
-
     }
 
     private void handleIfAlreadyRead(Book book) {
 
-        if (book.getAlready_read()==1) {
+        if (book.getAlready_read() == 1) {
             btnAddToAlreadyRead.setEnabled(false);
         } else {
             btnAddToAlreadyRead.setOnClickListener(new View.OnClickListener() {

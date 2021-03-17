@@ -15,7 +15,7 @@ public class LinkedinActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_linkedin);
         webView = findViewById(R.id.linkedinWebview);
-      
+
         webView.loadUrl("https://www.linkedin.com/in/taran2994/");
     }
 

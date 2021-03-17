@@ -14,18 +14,18 @@ public class CurrentlyReadingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_currently_reading);
-        currentlyRecView=findViewById(R.id.CurrentlyReadingRecView);
-        BooksRecyclerViewAdapter adapter= new BooksRecyclerViewAdapter(this,"CurrentlyReadingActivity");
+        currentlyRecView = findViewById(R.id.CurrentlyReadingRecView);
+        BooksRecyclerViewAdapter adapter = new BooksRecyclerViewAdapter(this, "CurrentlyReadingActivity");
         currentlyRecView.setAdapter(adapter);
         currentlyRecView.setLayoutManager(new LinearLayoutManager(this));
-        DatabaseHelper helper= new DatabaseHelper(this);
+        DatabaseHelper helper = new DatabaseHelper(this);
 
         adapter.setBookList(helper.getCurrentlyReadingBooks());
     }
 
     @Override
     public void onBackPressed() {
-        Intent intent= new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
