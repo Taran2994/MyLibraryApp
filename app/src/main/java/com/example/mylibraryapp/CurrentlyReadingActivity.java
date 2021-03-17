@@ -18,7 +18,9 @@ public class CurrentlyReadingActivity extends AppCompatActivity {
         BooksRecyclerViewAdapter adapter= new BooksRecyclerViewAdapter(this,"CurrentlyReadingActivity");
         currentlyRecView.setAdapter(adapter);
         currentlyRecView.setLayoutManager(new LinearLayoutManager(this));
-        adapter.setBookList(Utils.getCurrentlyReadingBooks());
+        DatabaseHelper helper= new DatabaseHelper(this);
+
+        adapter.setBookList(helper.getCurrentlyReadingBooks());
     }
 
     @Override

@@ -12,12 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyLibraryApp">
         <activity android:name=".LinkedinActivity"></activity>
-        <activity android:name=".WishlistActivity" />
-        <activity android:name=".FavoriteBooksActivity" />
-        <activity android:name=".CurrentlyReadingActivity" />
-        <activity android:name=".AlreadyReadBooksActivity" />
-        <activity android:name=".BookActivity" />
-        <activity android:name=".AllBooksActivity" />
+        <activity android:name=".WishlistActivity"
+            android:label="@string/activity_wishlist"/>
+        <activity android:name=".FavoriteBooksActivity"
+            android:label="@string/activity_favorites"/>
+        <activity android:name=".CurrentlyReadingActivity"
+            android:label="@string/activity_currentlyReading"/>
+        <activity android:name=".AlreadyReadBooksActivity"
+            android:label="@string/activity_alreadyRead"/>
+        <activity android:name=".BookActivity"
+            android:label="@string/activity_book"/>
+        <activity android:name=".AllBooksActivity"
+            android:label="@string/activity_allBooks"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -17,7 +17,9 @@ public class FavoriteBooksActivity extends AppCompatActivity {
         BooksRecyclerViewAdapter adapter= new BooksRecyclerViewAdapter(this,"FavoriteBooksActivity");
         favBookRecView.setAdapter(adapter);
         favBookRecView.setLayoutManager(new LinearLayoutManager(this));
-        adapter.setBookList(Utils.getFavoriteBooks());
+        DatabaseHelper helper= new DatabaseHelper(this);
+
+        adapter.setBookList(helper.getFavoriteBooks());
     }
     @Override
     public void onBackPressed() {

@@ -17,7 +17,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Utils.getInstance(); // To make sure all the lists are initialised and to stop null pointer exception
+        DatabaseHelper db= new DatabaseHelper(this);
+        db.initData();// To make sure all the lists are initialised and to stop null pointer exception
 
         initViews();
 

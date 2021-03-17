@@ -26,7 +26,9 @@ public class AlreadyReadBooksActivity extends AppCompatActivity {
         BooksRecyclerViewAdapter adap= new BooksRecyclerViewAdapter(this,"AlreadyReadBooksActivity");
         alreadReadRecView.setAdapter(adap);
         alreadReadRecView.setLayoutManager(new LinearLayoutManager(this));
-        adap.setBookList(Utils.getAlreadyReadBooks());
+        DatabaseHelper helper= new DatabaseHelper(this);
+
+        adap.setBookList(helper.getAlreadReadBooks());
 
     }
 }

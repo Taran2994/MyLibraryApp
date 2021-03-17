@@ -25,8 +25,9 @@ public class AllBooksActivity extends AppCompatActivity {
 
         booksRecView.setAdapter(adapter);
         booksRecView.setLayoutManager(new LinearLayoutManager(this));
+        DatabaseHelper helper= new DatabaseHelper(this);
 
 
-        adapter.setBookList(Utils.getInstance().getAllBooks());
+        adapter.setBookList(helper.getAllBooks());
     }
 }
