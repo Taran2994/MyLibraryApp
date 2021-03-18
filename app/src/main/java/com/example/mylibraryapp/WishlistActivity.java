@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 public class WishlistActivity extends AppCompatActivity {
 
@@ -16,11 +18,16 @@ public class WishlistActivity extends AppCompatActivity {
         RecyclerView wishlistRecView = findViewById(R.id.wishlistRecView);
         BooksRecyclerViewAdapter adapter = new BooksRecyclerViewAdapter(this, "WishlistActivity");
         DatabaseHelper helper = new DatabaseHelper(this);
+        TextView txtEmpty= findViewById(R.id.txtEmptyWish);
 
         adapter.setBookList(helper.getWishlistBooks());
 
         wishlistRecView.setAdapter(adapter);
         wishlistRecView.setLayoutManager(new LinearLayoutManager(this));
+        if (helper.getWishlistBooks().size()==0){
+            wishlistRecView.setVisibility(View.GONE);
+            txtEmpty.setVisibility(View.VISIBLE);
+        }
 
     }
 

@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 public class FavoriteBooksActivity extends AppCompatActivity {
 
@@ -18,8 +20,13 @@ public class FavoriteBooksActivity extends AppCompatActivity {
         favBookRecView.setAdapter(adapter);
         favBookRecView.setLayoutManager(new LinearLayoutManager(this));
         DatabaseHelper helper = new DatabaseHelper(this);
+        TextView txtEmptyList=findViewById(R.id.txtEmptyFav);
 
         adapter.setBookList(helper.getFavoriteBooks());
+        if (helper.getFavoriteBooks().size()==0){
+            favBookRecView.setVisibility(View.GONE);
+            txtEmptyList.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
